@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { gql } from "apollo-boost"
 import { Query } from "@apollo/react-components"
+import { Table } from "react-bootstrap"
 import ProductForm from "./ProductForm"
 import ProductRow from "./ProductRow"
 
@@ -76,7 +77,7 @@ function ProductTable(props) {
     )
   })
   return (
-    <table>
+    <Table striped bordered hover>
       <thead>
         <tr>
           <th> Product Name </th>
@@ -88,7 +89,7 @@ function ProductTable(props) {
         </tr>
       </thead>
       <tbody>{rows}</tbody>
-    </table>
+    </Table>
   )
 }
 
