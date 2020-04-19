@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { graphql } from "react-apollo"
 import { gql } from "apollo-boost"
 import { Link } from "react-router-dom"
+import { Button, Form, Col } from "react-bootstrap"
 import TextInput from "./TextInput"
 import NumInput from "./NumberInput"
-import { Button, Form, Col } from 'react-bootstrap'
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -94,8 +94,12 @@ class UpdateForm extends Component {
         <Form.Row>
           <Form.Group as={Col} controlId="category">
             <Form.Label>Category</Form.Label>
-            <Form.Control as="select" name="category" 
-              value={category} onChange={this.handleChange}>
+            <Form.Control
+              as="select"
+              name="category"
+              value={category}
+              onChange={this.handleChange}
+            >
               <option value="Shirts">Shirts</option>
               <option value="Jeans">Jeans</option>
               <option value="Jackets">Jackets</option>
@@ -113,12 +117,22 @@ class UpdateForm extends Component {
         <Form.Row>
           <Form.Group as={Col} controlId="name">
             <Form.Label>Name</Form.Label>
-            <TextInput name="name" onChange={this.handleChange} value={name} placeholder="Enter product name"/>
+            <TextInput
+              name="name"
+              onChange={this.handleChange}
+              value={name}
+              placeholder="Enter product name"
+            />
           </Form.Group>
 
           <Form.Group as={Col} controlId="image">
             <Form.Label>Image URL</Form.Label>
-            <TextInput name="image" onChange={this.handleChange} value={image} placeholder="Enter image URL"/>
+            <TextInput
+              name="image"
+              onChange={this.handleChange}
+              value={image}
+              placeholder="Enter image URL"
+            />
           </Form.Group>
         </Form.Row>
 

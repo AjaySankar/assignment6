@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Form } from 'react-bootstrap'
+import { Form } from "react-bootstrap"
 
 export default class TextInput extends Component {
   constructor(props) {
@@ -23,7 +23,8 @@ export default class TextInput extends Component {
     const { value } = this.state
     const { name, placeholder } = this.props
     return (
-      <Form.Control type="text" 
+      <Form.Control
+        type="text"
         name={name}
         onBlur={this.onBlur}
         onChange={this.onChange}

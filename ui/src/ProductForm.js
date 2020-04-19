@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { gql } from "apollo-boost"
 import { Mutation } from "@apollo/react-components"
-import { Button, Form, Col } from 'react-bootstrap'
+import { Button, Form, Col } from "react-bootstrap"
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -54,7 +54,8 @@ class ProductForm extends Component {
             product: { category, price: inputPrice, name, image },
           } = this.state
           return (
-            <Form onSubmit={(e) => {
+            <Form
+              onSubmit={(e) => {
                 const price = parseFloat(inputPrice.substring(1)) || 0
                 e.preventDefault()
                 addProduct({
@@ -68,12 +69,17 @@ class ProductForm extends Component {
                 this.setState({
                   product: { ...RESET_VALUES },
                 })
-              }}>
+              }}
+            >
               <Form.Row>
                 <Form.Group as={Col} controlId="category">
                   <Form.Label>Category</Form.Label>
-                  <Form.Control as="select" name="category" 
-                    value={category} onChange={this.handleChange}>
+                  <Form.Control
+                    as="select"
+                    name="category"
+                    value={category}
+                    onChange={this.handleChange}
+                  >
                     <option value="Shirts">Shirts</option>
                     <option value="Jeans">Jeans</option>
                     <option value="Jackets">Jackets</option>
@@ -84,9 +90,10 @@ class ProductForm extends Component {
 
                 <Form.Group as={Col} controlId="price">
                   <Form.Label>Price</Form.Label>
-                  <Form.Control type="text" 
+                  <Form.Control
+                    type="text"
                     name="price"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     value={inputPrice}
                     placeholder="Enter product price"
                   />
@@ -96,9 +103,10 @@ class ProductForm extends Component {
               <Form.Row>
                 <Form.Group as={Col} controlId="name">
                   <Form.Label>Name</Form.Label>
-                  <Form.Control type="text" 
+                  <Form.Control
+                    type="text"
                     name="name"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     value={name}
                     placeholder="Enter product name"
                   />
@@ -106,9 +114,10 @@ class ProductForm extends Component {
 
                 <Form.Group as={Col} controlId="image">
                   <Form.Label>Image URL</Form.Label>
-                  <Form.Control type="text" 
+                  <Form.Control
+                    type="text"
                     name="image"
-                    onChange={this.handleChange} 
+                    onChange={this.handleChange}
                     value={image}
                     placeholder="Enter image URL"
                   />

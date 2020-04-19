@@ -3,10 +3,10 @@ import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "react-apollo"
 import { Route, Switch } from "react-router-dom"
 import { createHttpLink } from "apollo-link-http"
+import bootstrap from "bootstrap"
 import ProductList from "./ProductList"
 import ProductView from "./ProductView"
 import UpdateForm from "./UpdateForm"
-import bootstrap from "bootstrap"
 
 import "./App.css"
 

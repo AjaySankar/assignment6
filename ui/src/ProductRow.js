@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { graphql } from "react-apollo"
 import { gql } from "apollo-boost"
 import { Link } from "react-router-dom"
-import { Button } from 'react-bootstrap'
+import { Button } from "react-bootstrap"
 
 const deleteProductMutation = gql`
   mutation removeProduct($id: Int!) {
@@ -56,7 +56,10 @@ class ProductRow extends Component {
           <Link to={`/edit/product/${id}`}> Edit </Link>
         </td>
         <td>
-          <Button variant="danger" onClick={this.handleDelete}> Delete </Button>
+          <Button variant="danger" onClick={this.handleDelete}>
+            {" "}
+            Delete{" "}
+          </Button>
         </td>
       </tr>
     )
