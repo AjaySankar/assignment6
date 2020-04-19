@@ -6,6 +6,7 @@ import { createHttpLink } from "apollo-link-http"
 import ProductList from "./ProductList"
 import ProductView from "./ProductView"
 import UpdateForm from "./UpdateForm"
+import bootstrap from "bootstrap"
 
 import "./App.css"
 

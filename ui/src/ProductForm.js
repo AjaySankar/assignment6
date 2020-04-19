@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { gql } from "apollo-boost"
 import { Mutation } from "@apollo/react-components"
+import Button from 'react-bootstrap/Button'
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -101,6 +102,7 @@ class ProductForm extends Component {
                   value={image}
                 />
                 <input type="submit" value="Add Product" />
+                <Button variant="primary" type="submit"> Add Product </Button>
               </form>
             </div>
           )
