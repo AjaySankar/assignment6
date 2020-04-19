@@ -4,6 +4,7 @@ import { gql } from "apollo-boost"
 import { Link } from "react-router-dom"
 import TextInput from "./TextInput"
 import NumInput from "./NumberInput"
+import { Button, Form, Col } from 'react-bootstrap'
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -86,27 +87,52 @@ class UpdateForm extends Component {
 
   render() {
     const {
-      product: { price, name, image },
+      product: { category, price, name, image },
     } = this.state
     return (
-      <form>
-        <label>Category</label>
-        <label>Price Per Unit </label>
-        <select name="category" onBlur={this.handleChange}>
-          <option value="Shirts">Shirts</option>
-          <option value="Jeans">Jeans</option>
-          <option value="Jackets">Jackets</option>
-          <option value="Sweaters">Sweaters</option>
-          <option value="Accessories">Accessories</option>
-        </select>
-        <NumInput name="price" onChange={this.handleChange} value={price} />
-        <label>Product Name </label>
-        <label>Image URL </label>
-        <TextInput name="name" onChange={this.handleChange} value={name} />
-        <TextInput name="image" onChange={this.handleChange} value={image} />
-        <input type="submit" value="Update Product" onClick={this.handleSave} />
-        <Link to="/"> Go to Home </Link>
-      </form>
+      <Form onSubmit={this.handleSave}>
+        <Form.Row>
+          <Form.Group as={Col} controlId="category">
+            <Form.Label>Category</Form.Label>
+            <Form.Control as="select" name="category" 
+              value={category} onChange={this.handleChange}>
+              <option value="Shirts">Shirts</option>
+              <option value="Jeans">Jeans</option>
+              <option value="Jackets">Jackets</option>
+              <option value="Sweaters">Sweaters</option>
+              <option value="Accessories">Accessories</option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="price">
+            <Form.Label>Price</Form.Label>
+            <NumInput name="price" onChange={this.handleChange} value={price} />
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col} controlId="name">
+            <Form.Label>Name</Form.Label>
+            <TextInput name="name" onChange={this.handleChange} value={name} placeholder="Enter product name"/>
+          </Form.Group>
+
+          <Form.Group as={Col} controlId="image">
+            <Form.Label>Image URL</Form.Label>
+            <TextInput name="image" onChange={this.handleChange} value={image} placeholder="Enter image URL"/>
+          </Form.Group>
+        </Form.Row>
+
+        <Form.Row>
+          <Form.Group as={Col}>
+            <Button variant="primary" type="submit">
+              Update Product
+            </Button>
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Link to="/"> Go to Home </Link>
+          </Form.Group>
+        </Form.Row>
+      </Form>
     )
   }
 }

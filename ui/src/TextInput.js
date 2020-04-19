@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Form } from 'react-bootstrap'
 
 export default class TextInput extends Component {
   constructor(props) {
@@ -20,14 +21,14 @@ export default class TextInput extends Component {
 
   render() {
     const { value } = this.state
-    const { name } = this.props
+    const { name, placeholder } = this.props
     return (
-      <input
-        type="text"
+      <Form.Control type="text" 
         name={name}
-        value={value}
         onBlur={this.onBlur}
         onChange={this.onChange}
+        value={value}
+        placeholder={placeholder}
       />
     )
   }

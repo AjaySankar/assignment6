@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Form } from 'react-bootstrap'
 
 function format(num) {
   return num != null ? num.toString() : ""
@@ -33,12 +34,12 @@ export default class NumInput extends Component {
     const { value } = this.state
     const { name } = this.props
     return (
-      <input
-        type="text"
+      <Form.Control type="text" 
         name={name}
-        value={value}
         onBlur={this.onBlur}
-        onChange={this.onChange}
+        onChange={this.onChange} 
+        value={value}
+        placeholder="Enter product price"
       />
     )
   }
