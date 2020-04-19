@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { gql } from "apollo-boost"
 import { Mutation } from "@apollo/react-components"
-import Button from 'react-bootstrap/Button'
+import { Button, Form, Col } from 'react-bootstrap'
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -54,57 +54,71 @@ class ProductForm extends Component {
             product: { category, price: inputPrice, name, image },
           } = this.state
           return (
-            <div>
-              <form
-                onSubmit={(e) => {
-                  const price = parseFloat(inputPrice.substring(1)) || 0
-                  e.preventDefault()
-                  addProduct({
-                    variables: {
-                      category,
-                      name,
-                      price,
-                      image,
-                    },
-                  })
-                  this.setState({
-                    product: { ...RESET_VALUES },
-                  })
-                }}
-              >
-                <label>Category</label>
-                <label>Price Per Unit </label>
-                <select name="category" onBlur={this.handleChange}>
-                  <option value="Shirts">Shirts</option>
-                  <option value="Jeans">Jeans</option>
-                  <option value="Jackets">Jackets</option>
-                  <option value="Sweaters">Sweaters</option>
-                  <option value="Accessories">Accessories</option>
-                </select>
-                <input
-                  type="text"
-                  name="price"
-                  onChange={this.handleChange}
-                  value={inputPrice}
-                />
-                <label>Product Name </label>
-                <label>Image URL </label>
-                <input
-                  type="text"
-                  name="name"
-                  onChange={this.handleChange}
-                  value={name}
-                />
-                <input
-                  type="text"
-                  name="image"
-                  onChange={this.handleChange}
-                  value={image}
-                />
-                <input type="submit" value="Add Product" />
-                <Button variant="primary" type="submit"> Add Product </Button>
-              </form>
-            </div>
+            <Form onSubmit={(e) => {
+                const price = parseFloat(inputPrice.substring(1)) || 0
+                e.preventDefault()
+                addProduct({
+                  variables: {
+                    category,
+                    name,
+                    price,
+                    image,
+                  },
+                })
+                this.setState({
+                  product: { ...RESET_VALUES },
+                })
+              }}>
+              <Form.Row>
+                <Form.Group as={Col} controlId="category">
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control as="select" name="category" 
+                    value={category} onChange={this.handleChange}>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Jeans">Jeans</option>
+                    <option value="Jackets">Jackets</option>
+                    <option value="Sweaters">Sweaters</option>
+                    <option value="Accessories">Accessories</option>
+                  </Form.Control>
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="price">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control type="text" 
+                    name="price"
+                    onChange={this.handleChange} 
+                    value={inputPrice}
+                    placeholder="Enter product price"
+                  />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Row>
+                <Form.Group as={Col} controlId="name">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control type="text" 
+                    name="name"
+                    onChange={this.handleChange} 
+                    value={name}
+                    placeholder="Enter product name"
+                  />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="image">
+                  <Form.Label>Image URL</Form.Label>
+                  <Form.Control type="text" 
+                    name="image"
+                    onChange={this.handleChange} 
+                    value={image}
+                    placeholder="Enter image URL"
+                  />
+                </Form.Group>
+              </Form.Row>
+
+              <Button variant="primary" type="submit">
+                Submit
+              </Button>
+            </Form>
           )
         }}
       </Mutation>
