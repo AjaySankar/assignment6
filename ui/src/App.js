@@ -3,6 +3,7 @@ import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "react-apollo"
 import { Route, Switch } from "react-router-dom"
 import { createHttpLink } from "apollo-link-http"
+// eslint-disable-next-line no-unused-vars
 import bootstrap from "bootstrap"
 import ProductList from "./ProductList"
 import ProductView from "./ProductView"

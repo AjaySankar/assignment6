@@ -1,9 +1,8 @@
 import React, { Component } from "react"
 import { graphql } from "react-apollo"
 import { gql } from "apollo-boost"
-import { NavLink } from "react-router-dom"
 import { Button } from "react-bootstrap"
-import { LinkContainer } from 'react-router-bootstrap'
+import { LinkContainer } from "react-router-bootstrap"
 
 const deleteProductMutation = gql`
   mutation removeProduct($id: Int!) {

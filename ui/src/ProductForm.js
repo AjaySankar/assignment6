@@ -37,7 +37,7 @@ class ProductForm extends Component {
     const { formInput } = this.props
     this.state = {
       product: formInput || { ...RESET_VALUES },
-      showModal: false
+      showModal: false,
     }
   }
 
@@ -50,7 +50,7 @@ class ProductForm extends Component {
 
   closeModal() {
     this.setState(({ showModal }) => {
-      return { 'showModal':  !showModal}
+      return { showModal: !showModal }
     })
   }
 
@@ -60,7 +60,7 @@ class ProductForm extends Component {
         {(addProduct) => {
           const {
             product: { category, price: inputPrice, name, image },
-            showModal
+            showModal,
           } = this.state
           return (
             <div>
@@ -78,7 +78,7 @@ class ProductForm extends Component {
                   })
                   this.setState({
                     product: { ...RESET_VALUES },
-                    showModal: true
+                    showModal: true,
                   })
                 }}
               >
