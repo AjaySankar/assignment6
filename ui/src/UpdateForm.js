@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { Button, Form, Col } from "react-bootstrap"
 import TextInput from "./TextInput"
 import NumInput from "./NumberInput"
+import ProductsClient from "./ProductClient"
 
 const RESET_VALUES = { name: "", price: "$", category: "Shirts", image: "" }
 
@@ -47,6 +48,37 @@ class UpdateForm extends Component {
     this.state = {
       product: { ...RESET_VALUES, ...{}, ...{ id: parseInt(id, 10) } },
     }
+  }
+
+  componentDidMount() {
+    this.getProductInfo()
+    .then(({ data = {}}) => this.setState({
+        product: data.getProductInfo
+      }))
+    .catch(error => window.console.log(error))
+  }
+
+  getProductInfo() {
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props
+    return ProductsClient.query({
+      query: gql`
+        query {
+          getProductInfo(
+            id: ${parseInt(id, 10)}
+          ) {
+            id
+            category
+            name
+            price
+            image
+          }
+        }
+      `
+    })
   }
 
   handleChange({ target }, naturalValue) {
