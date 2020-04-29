@@ -40,6 +40,7 @@ class UpdateForm extends Component {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSave = this.handleSave.bind(this)
+    this.getProductInfo = this.getProductInfo.bind(this)
     const {
       match: {
         params: { id },
@@ -51,11 +52,7 @@ class UpdateForm extends Component {
   }
 
   componentDidMount() {
-    this.getProductInfo()
-    .then(({ data = {}}) => this.setState({
-        product: data.getProductInfo
-      }))
-    .catch(error => window.console.log(error))
+    this.getProductInfo();
   }
 
   getProductInfo() {
@@ -64,7 +61,7 @@ class UpdateForm extends Component {
         params: { id },
       },
     } = this.props
-    return ProductsClient.query({
+    ProductsClient.query({
       query: gql`
         query {
           getProductInfo(
@@ -79,6 +76,10 @@ class UpdateForm extends Component {
         }
       `
     })
+    .then(({ data = {}}) => this.setState({
+      product: data.getProductInfo
+    }))
+    .catch(error => window.console.log(error))
   }
 
   handleChange({ target }, naturalValue) {
@@ -174,6 +175,13 @@ class UpdateForm extends Component {
               Update Product
             </Button>
           </Form.Group>
+          <Form.Group as={Col}>
+            <Button variant="primary" type="submit" onClick={this.getProductInfo}>
+              Reset Product
+            </Button>
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
           <Form.Group as={Col}>
             <Link to="/"> Go to Home </Link>
           </Form.Group>
